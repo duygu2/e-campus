@@ -19,13 +19,13 @@ public class Department {
     private Long id;
 
     private String name;
-
+    @JsonIgnore
     @ManyToOne
     private Faculty faculty;
 
     @JsonIgnore
     @OneToMany
-    private Collection<User> users;
+    private Collection<Student> students;
 
     @OneToMany
     private Collection<Course> courses=new ArrayList<>();

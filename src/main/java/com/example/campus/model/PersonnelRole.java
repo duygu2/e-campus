@@ -18,7 +18,5 @@ public class PersonnelRole {
     private Long id;
     private String name;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Collection<UserRole> userRoles= new ArrayList<>();
 
 }

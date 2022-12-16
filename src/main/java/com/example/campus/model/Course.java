@@ -24,5 +24,5 @@ public class Course {
 
     @JsonIgnore
     @ManyToMany
-    private Collection<User> users;
+    private Collection<Student> students;
 }

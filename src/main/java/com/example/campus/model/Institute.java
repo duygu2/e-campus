@@ -25,7 +25,7 @@ public class Institute {
 
     @JsonIgnore
     @OneToMany
-    private Collection<User> users;
+    private Collection<Student> students;
 
     @OneToMany
     private Collection<Course> courses=new ArrayList<>();

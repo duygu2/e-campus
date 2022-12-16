@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 @Data
 @Entity
 @NoArgsConstructor
@@ -18,4 +21,7 @@ public class Personnel {
 
     private String name;
     private String password;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<PersonnelRole> roles = new ArrayList<>();
 }

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Data
 @Entity
@@ -22,12 +23,14 @@ public class Faculty {
 
     @JsonIgnore
     @OneToMany
-    private Collection<User> users;
+    private Collection<Student> students;
 
-    @OneToMany
-    private Collection<Department> departmentList = new ArrayList<>();
+    @OneToMany(mappedBy = "faculty")
+    private List<Department> departmentList = new ArrayList<>();
 
     //@OneToMany
     //private Collection<Course> courses=new ArrayList<>();
+
+
 
 }

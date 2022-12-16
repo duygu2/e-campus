@@ -14,18 +14,17 @@ import java.util.Collection;
 @AllArgsConstructor
 @Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
 
-public class User {
+public class Student {
     @Id
     @GeneratedValue
     private Long id;
 
     private String name;
+    private String mail;
     private String password;
     private Long schoolNumber;
-
+    private StudentType studentType;
     //add features
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Collection<UserRole> userRoles= new ArrayList<>();
 
 }
