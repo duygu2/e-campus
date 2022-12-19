@@ -1,5 +1,6 @@
 package com.example.campus.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,5 +27,12 @@ public class Student {
     private StudentType studentType;
     //add features
 
+    @JsonIgnore
+    @ManyToOne
+    private Department department;
+
+    @JsonIgnore
+    @ManyToOne
+    private Faculty faculty;
 
 }

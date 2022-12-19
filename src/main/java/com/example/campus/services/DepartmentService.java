@@ -1,11 +1,13 @@
 package com.example.campus.services;
 
 import com.example.campus.model.Department;
+import com.example.campus.model.Student;
 import com.example.campus.repository.DepartmentRepository;
 import com.example.campus.repository.FacultyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,16 +17,16 @@ public class DepartmentService {
     private final FacultyRepository facultyRepository;
 
     public Department addDepartment(Long id, Department department) {
-        department.setFaculty(facultyRepository.findById(id).get());
+        department.setFaculty(facultyRepository.findById(id).orElse(null));
         return departmentRepository.save(department);
     }
 
     public Department getDepartment(Long id) {
-        return departmentRepository.findById(id).get();
+        return departmentRepository.findById(id).orElse(null);
     }
 
-    public Department getAllDepartment() {
-        return (Department) departmentRepository.findAll();
+    public List<Department> getAllDepartment() {
+        return  departmentRepository.findAll();
     }
 
     public void deleteDepartment(Long id) {
@@ -41,4 +43,29 @@ public class DepartmentService {
         return departmentOptional.orElse(new Department());
     }
 
+
+    public List<Student> students(Long departmentId){
+        return departmentRepository.findById(departmentId).orElse(null).getStudents();
+    }
+
+    public Student retireveStudents(Long departmentId, Long studentId) {
+        Department department = getDepartment(departmentId);
+        if(department == null){
+            return null;
+        }
+
+        return department.getStudents().stream()
+                .filter(student -> student.getId().equals(studentId))
+                .findAny()
+                .orElse(null);
+    }
+
+
+
+  /*  public ResponseEntity<Student> retireveStudents(Long departmentId, Long studentId) {
+        Department department =getDepartment(departmentId);
+
+        return department == null ? null : department.getStudents();
+    }*/
 }
+

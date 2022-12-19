@@ -20,7 +20,6 @@ public class DepartmentController {
 
     @GetMapping("/departments")
     public ResponseEntity<?> getAllDepartments(){
-
         return ResponseEntity.ok(departmentService.getAllDepartment());
     }
 
@@ -46,6 +45,7 @@ public class DepartmentController {
     public ResponseEntity<Department> updateDepartment(@PathVariable Long id, @RequestBody Department department){
         return ResponseEntity.ok(departmentService.updateDepartment(id,department));
     }
+
 
 
 }

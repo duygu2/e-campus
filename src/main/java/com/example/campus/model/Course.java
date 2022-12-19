@@ -23,6 +23,10 @@ public class Course {
     private Personnel personnel;
 
     @JsonIgnore
+    @ManyToOne
+    private Department department;
+
+    @JsonIgnore
     @ManyToMany
     private Collection<Student> students;
 }

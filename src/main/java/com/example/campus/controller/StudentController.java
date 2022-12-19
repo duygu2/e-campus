@@ -23,7 +23,7 @@ public class StudentController {
         return ResponseEntity.ok(studentService.getStudentById(id));
     }
 
-    @PostMapping
+   /* @PostMapping
     public ResponseEntity<StudentDto> createStudent(@RequestBody StudentDto studentDto){
         return ResponseEntity.ok(studentService.createStudent(studentDto));
     }
@@ -37,7 +37,8 @@ public class StudentController {
     public ResponseEntity<Void> deleteStudent(@PathVariable Long id){
         studentService.deleteStudent(id);
         return ResponseEntity.ok().build();
-    }
+    }*/
+
 
 
 
