@@ -3,20 +3,15 @@ package com.example.campus.services;
 import com.example.campus.dto.Students.StudentDto;
 import com.example.campus.dto.Students.StudentDtoConverter;
 import com.example.campus.dto.Students.UpdateStudentRequest;
-import com.example.campus.model.Department;
 import com.example.campus.model.Student;
 import com.example.campus.repository.DepartmentRepository;
 import com.example.campus.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

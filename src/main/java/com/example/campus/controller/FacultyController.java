@@ -32,6 +32,10 @@ public class FacultyController {
         return ResponseEntity.ok(facultyService.departments(id));
     }
 
+    @GetMapping("/{facultiesId}/departments/{departmentsId}")
+    public ResponseEntity <Department>  getDepartmentForFaculty(@PathVariable Long facultiesId,@PathVariable Long departmentsId){
+        return ResponseEntity.ok(facultyService.retireveDepartment(facultiesId,departmentsId));
+    }
 
     @PostMapping
     public ResponseEntity<Faculty> createFaculty(@RequestBody Faculty faculty){

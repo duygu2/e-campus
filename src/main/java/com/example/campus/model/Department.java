@@ -1,6 +1,5 @@
 package com.example.campus.model;
 
-import com.example.campus.dto.Students.StudentDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,6 +24,10 @@ public class Department {
     @JsonIgnore
     @ManyToOne
     private Faculty faculty;
+
+    @JsonIgnore
+    @ManyToOne
+    private Institute institute;
 
 
     @OneToMany(mappedBy = "department")

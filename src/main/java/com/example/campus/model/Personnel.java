@@ -16,9 +16,8 @@ import java.util.Collection;
 
 public class Personnel {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
     private String password;
 

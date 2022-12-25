@@ -1,7 +1,6 @@
 package com.example.campus.controller;
 
 import com.example.campus.dto.Students.StudentDto;
-import com.example.campus.dto.Students.UpdateStudentRequest;
 import com.example.campus.services.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -38,8 +37,6 @@ public class StudentController {
         studentService.deleteStudent(id);
         return ResponseEntity.ok().build();
     }*/
-
-
 
 
     

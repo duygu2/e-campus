@@ -26,6 +26,7 @@ public class Course {
     @ManyToOne
     private Department department;
 
+
     @JsonIgnore
     @ManyToMany
     private Collection<Student> students;

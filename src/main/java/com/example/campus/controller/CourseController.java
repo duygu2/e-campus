@@ -22,20 +22,26 @@ public class CourseController {
         return ResponseEntity.ok(courseService.getCourseById(id));
     }
 
-    @PostMapping("/departments/{id}/courses")
+
+    /* @PostMapping("faculties/{facultyId}/departments/{departmentId}/courses")
     @ResponseBody
-    public ResponseEntity<Course> addCourse(@PathVariable Long id, @RequestBody Course course){
-
-        return new ResponseEntity(courseService.addCourse(id,course),HttpStatus.CREATED);
-    }
-
+    public ResponseEntity<Course> createCourse(@PathVariable Long facultyId, @PathVariable Long departmentId, @RequestBody Course course){
+       return new ResponseEntity(courseService.createCourse(facultyId,departmentId,course), HttpStatus.CREATED);
+    }*/
+    //BURADA DFACULTY DEPARTMAN COURSES GİDEREK ULAŞ SİL
     @DeleteMapping("/courses/{id}")
     public ResponseEntity<Void> deleteCourse(@PathVariable Long id){
         courseService.deleteCourse(id);
         return ResponseEntity.ok().build();
     }
 
-   // @PostMapping("/students/{id}/courses")
+    @PutMapping("/courses/{courseId}")
+    public ResponseEntity<Course> updateCourse(@PathVariable Long courseId,
+                                               @RequestBody Course course)
+    {
+        return ResponseEntity.ok(courseService.updateCourse(courseId,course));
+    }
+
 
 
 

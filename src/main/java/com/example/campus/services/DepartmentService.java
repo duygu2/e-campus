@@ -1,12 +1,15 @@
 package com.example.campus.services;
 
+import com.example.campus.model.Course;
 import com.example.campus.model.Department;
 import com.example.campus.model.Student;
 import com.example.campus.repository.DepartmentRepository;
 import com.example.campus.repository.FacultyRepository;
+import com.example.campus.repository.InstituteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +18,7 @@ import java.util.Optional;
 public class DepartmentService {
     private final DepartmentRepository departmentRepository;
     private final FacultyRepository facultyRepository;
+    private final InstituteRepository instituteRepository;
 
     public Department addDepartment(Long id, Department department) {
         department.setFaculty(facultyRepository.findById(id).orElse(null));
@@ -58,6 +62,27 @@ public class DepartmentService {
                 .filter(student -> student.getId().equals(studentId))
                 .findAny()
                 .orElse(null);
+    }
+
+    public Collection<Course> allCourses(Long departmentId) {
+        return departmentRepository.findById(departmentId).orElse(null).getCourses();
+    }
+
+    public Course courses(Long departmentId, Long courseId) {
+        Department department = getDepartment(departmentId);
+        if (department== null){
+            return null;
+        }
+
+        return department.getCourses().stream()
+                .filter(course -> course.getId().equals(courseId))
+                .findAny()
+                .orElse(null);
+    }
+
+    public Department addDepartmentByInstitute(Long id, Department department) {
+        department.setInstitute(instituteRepository.findById(id).orElse(null));
+        return departmentRepository.save(department);
     }
 
 

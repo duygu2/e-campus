@@ -2,6 +2,7 @@ package com.example.campus.services;
 
 import com.example.campus.model.Department;
 import com.example.campus.model.Faculty;
+import com.example.campus.model.Student;
 import com.example.campus.repository.FacultyRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,5 +40,18 @@ public class FacultyService {
     public Collection<Department> departments(Long facultyId){
         return facultyRepository.findById(facultyId).get().getDepartmentList();
     }
+
+    public Department retireveDepartment(Long facultiesId, Long departmentsId) {
+        Faculty faculty = getFaculty(facultiesId);
+        if(faculty == null){
+            return null;
+        }
+        return faculty.getDepartmentList().stream()
+                .filter(department -> department.getId().equals(departmentsId))
+                .findAny()
+                .orElse(null);
+
+    }
+
 
 }
