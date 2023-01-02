@@ -5,6 +5,7 @@ import com.example.campus.model.Faculty;
 import com.example.campus.services.FacultyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -17,6 +18,7 @@ public class FacultyController {
 
     private final FacultyService facultyService;
 
+    @Secured("ROLE_ADMIN")
     @GetMapping
     public ResponseEntity<List<Faculty>> getAllFaculty(){
         return ResponseEntity.ok(facultyService.getFacultyAll());
@@ -36,7 +38,7 @@ public class FacultyController {
     public ResponseEntity <Department>  getDepartmentForFaculty(@PathVariable Long facultiesId,@PathVariable Long departmentsId){
         return ResponseEntity.ok(facultyService.retireveDepartment(facultiesId,departmentsId));
     }
-
+    @Secured("ROLE_ADMIN")
     @PostMapping
     public ResponseEntity<Faculty> createFaculty(@RequestBody Faculty faculty){
         return ResponseEntity.ok(facultyService.addFaculty(faculty));

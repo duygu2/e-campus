@@ -7,6 +7,8 @@ import com.example.campus.model.Student;
 import com.example.campus.repository.DepartmentRepository;
 import com.example.campus.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,6 +23,7 @@ public class StudentService {
     private final StudentDtoConverter studentDtoConverter;
     private final DepartmentService departmentService;
     private final DepartmentRepository departmentRepository;
+
 
 
     public List<StudentDto> getAllStudents(){
@@ -65,17 +68,23 @@ public class StudentService {
         studentRepository.deleteById(id);
     }
 
-    public List<Student> getAllStudentCourses(Long id) {
-        return (List<Student>) studentRepository.findById(id).orElse(null);
+    public List<StudentDto> getAllStudentCourses(Long id) {
+        return (List<StudentDto>) studentRepository.findById(id).orElse(null);
     }
 
     //öğrenci işleri yapacak ,admin yapacak
 
-    public Student addStudent(Long id, Student student){
+    public StudentDto addStudent(Long id, Student student){
         student.setDepartment(departmentRepository.findById(id).orElse(null));
 
-        studentRepository.save(student);
-        return student;
+        var savedStudent=studentRepository.save(student);
+        return StudentDto.builder().name(savedStudent.getName())
+                .studentType(savedStudent.getStudentType())
+                .schoolNumber(savedStudent.getSchoolNumber())
+                .department(savedStudent.getDepartment())
+                .id(savedStudent.getId())
+                .build();
+
     }
 
 

@@ -7,21 +7,23 @@ import com.example.campus.model.PersonnelRole;
 import com.example.campus.repository.PersonnelRepository;
 import com.example.campus.repository.PersonnelRoleRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class PersonnelService {
+@Transactional
+@Slf4j
+public class PersonnelService{
 
     private final PersonnelRepository personnelRepository;
     private final PersonnelDtoConverter personnelDtoConverter;
     private final PersonnelRoleRepository personnelRoleRepository;
 
-
-    //private final BCryptPasswzordEncoder bCryptPasswordEncoder;
 
 
     public PersonnelDto createPersonnel(Long personnelRoleId, PersonnelDto personnelDto) {
@@ -43,7 +45,7 @@ public class PersonnelService {
     public Personnel savePersonnel(Personnel personnel)
     {
 
-       // personnel.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+
         personnelRepository.save(personnel);
         return personnel;
     }

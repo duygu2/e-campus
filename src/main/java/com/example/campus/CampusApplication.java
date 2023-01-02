@@ -10,18 +10,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class CampusApplication {
-	private final FacultyRepository facultyRepository;
-	private final DepartmentRepository departmentRepository;
 
-	public CampusApplication(FacultyRepository facultyRepository, DepartmentRepository departmentRepository) {
-		this.facultyRepository = facultyRepository;
-		this.departmentRepository = departmentRepository;
-	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(CampusApplication.class, args);
 
 	}
+
 
 
 

@@ -22,7 +22,7 @@ public class FacultyService {
     }
 
     public Faculty getFaculty(Long id){
-        return facultyRepository.findById(id).get();
+        return facultyRepository.findById(id).orElse(null);
     }
 
    /* public Faculty getFacultyName(String name){
@@ -38,7 +38,7 @@ public class FacultyService {
     }
 
     public Collection<Department> departments(Long facultyId){
-        return facultyRepository.findById(facultyId).get().getDepartmentList();
+        return facultyRepository.findById(facultyId).orElse(null).getDepartmentList();
     }
 
     public Department retireveDepartment(Long facultiesId, Long departmentsId) {

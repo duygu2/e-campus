@@ -1,5 +1,6 @@
 package com.example.campus.controller;
 
+import com.example.campus.dto.Students.StudentDto;
 import com.example.campus.model.Student;
 import com.example.campus.services.DepartmentService;
 import com.example.campus.services.StudentService;
@@ -17,7 +18,7 @@ public class DepartmentStudentController {
 
     @PostMapping("/departments/{id}/students")
     @ResponseBody
-    public ResponseEntity<Student> createStudent(@PathVariable Long id,@RequestBody Student student){
+    public ResponseEntity<StudentDto> createStudent(@PathVariable Long id,@RequestBody Student student){
         return ResponseEntity.ok(studentService.addStudent(id,student));
     }
 

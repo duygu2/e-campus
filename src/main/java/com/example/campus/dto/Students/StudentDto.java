@@ -2,7 +2,7 @@ package com.example.campus.dto.Students;
 
 import com.example.campus.model.Department;
 import com.example.campus.model.StudentType;
-import jakarta.persistence.Entity;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
