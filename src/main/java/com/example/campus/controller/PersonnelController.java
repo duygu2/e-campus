@@ -5,6 +5,7 @@ import com.example.campus.services.PersonnelService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class PersonnelController {
     private final PersonnelService personnelService;
 
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_HR')")
     @PostMapping
     @RequestMapping("/personnels")
     @ResponseBody
@@ -20,6 +22,7 @@ public class PersonnelController {
         return ResponseEntity.ok(personnelService.savePersonnel(personnel));
 
     }
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_HR')")
     @GetMapping("/personnels")
     public ResponseEntity<?> getAllPersonnels()
     {
@@ -27,11 +30,12 @@ public class PersonnelController {
     }
 
 
-    @PostMapping("/personnels/roles")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_HR')")
+    @PostMapping("/personnels/{id}/roles")
     @ResponseBody
-    public ResponseEntity<?> addRoleToPersonnel( @RequestBody PersonnelRoleForm form)
+    public ResponseEntity<?> addRoleToPersonnel(@PathVariable Long id, @RequestBody PersonnelRoleForm form)
     {
-        personnelService.addRoleToPersonnel(form.getPersonnelId(), form.getRoleName());
+        personnelService.addRoleToPersonnel(id, form.getRoleName());
         return ResponseEntity.ok("Successful!");
     }
 }

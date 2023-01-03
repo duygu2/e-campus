@@ -5,6 +5,7 @@ import com.example.campus.services.CourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,29 +13,25 @@ import org.springframework.web.bind.annotation.*;
 public class CourseController {
     private final CourseService courseService;
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/courses")
     public ResponseEntity<?> getCourseAll(){
         return ResponseEntity.ok(courseService.getCourseAll());
     }
 
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/courses/{id}")
     public ResponseEntity<?> getCourseById(@PathVariable Long id){
         return ResponseEntity.ok(courseService.getCourseById(id));
     }
 
-
-    /* @PostMapping("faculties/{facultyId}/departments/{departmentId}/courses")
-    @ResponseBody
-    public ResponseEntity<Course> createCourse(@PathVariable Long facultyId, @PathVariable Long departmentId, @RequestBody Course course){
-       return new ResponseEntity(courseService.createCourse(facultyId,departmentId,course), HttpStatus.CREATED);
-    }*/
-    //BURADA DFACULTY DEPARTMAN COURSES GİDEREK ULAŞ SİL
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_DEPARTMENT','ROLE_FACULTY')")
     @DeleteMapping("/courses/{id}")
     public ResponseEntity<Void> deleteCourse(@PathVariable Long id){
         courseService.deleteCourse(id);
         return ResponseEntity.ok().build();
     }
-
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_DEPARTMENT','ROLE_FACULTY')")
     @PutMapping("/courses/{courseId}")
     public ResponseEntity<Course> updateCourse(@PathVariable Long courseId,
                                                @RequestBody Course course)

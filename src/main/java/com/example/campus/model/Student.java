@@ -17,7 +17,7 @@ import java.util.Collection;
 
 public class Student {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -25,6 +25,7 @@ public class Student {
     private String password;
     private Long schoolNumber;
     private StudentType studentType;
+    private String Role = "ROLE_STUDENT";
     //add features
 
     @JsonIgnore

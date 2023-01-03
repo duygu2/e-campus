@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Institute {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
