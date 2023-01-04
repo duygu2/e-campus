@@ -24,13 +24,13 @@ public class DepartmentStudentController {
         return ResponseEntity.ok(studentService.addStudent(id,student));
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_DEPARTMENT','ROLE_FACULTY')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_DEPARTMENT','ROLE_FACULTY','ROLE_STUDENT_AFFAIR')")
     @GetMapping("/departments/{departmentId}/students")
     public ResponseEntity<List<Student>> retireveStudentForDepartment(@PathVariable Long departmentId) {
         return ResponseEntity.ok(departmentService.students(departmentId));
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_DEPARTMENT','ROLE_FACULTY','ROLE_STUDENT')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_DEPARTMENT','ROLE_FACULTY','ROLE_STUDENT','ROLE_STUDENT_AFFAIR')")
     @GetMapping("/departments/{departmentId}/students/{studentId}")
     public Student retireveStudentsForDepartment(@PathVariable Long departmentId, @PathVariable Long studentId){
         return departmentService.retireveStudents(departmentId,studentId);

@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.*;
 public class StudentController {
     private final StudentService studentService;
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_DEPARTMENT','ROLE_FACULTY')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_DEPARTMENT','ROLE_FACULTY','ROLE_STUDENT_AFFAIR')")
     @GetMapping()
     public ResponseEntity<?> getAllStudents(){
         return ResponseEntity.ok(studentService.getAllStudents());
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_STUDENT','ROLE_ADMIN','ROLE_DEPARTMENT','ROLE_FACULTY')")
+    @PreAuthorize("hasAnyAuthority('ROLE_STUDENT','ROLE_ADMIN','ROLE_DEPARTMENT','ROLE_FACULTY','ROLE_STUDENT_AFFAIR')")
     @GetMapping("/{id}")
     public ResponseEntity<StudentDto> getAccountById(@PathVariable Long id) {
         return ResponseEntity.ok(studentService.getStudentById(id));

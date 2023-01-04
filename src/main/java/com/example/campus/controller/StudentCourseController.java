@@ -19,7 +19,7 @@ public class StudentCourseController {
     private final StudentService studentService;
     private final CourseService courseService;
 
-    /*@PostMapping("/students/{id}/courses")
+   /* @PostMapping("/students/{id}/courses")
     @ResponseBody
     public ResponseEntity<Course> addCourse(@PathVariable Long id, @RequestBody Course course){
         return new ResponseEntity(courseService.addStudentCourse(id,course), HttpStatus.CREATED);

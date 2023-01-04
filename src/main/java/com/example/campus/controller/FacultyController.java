@@ -19,24 +19,24 @@ public class FacultyController {
 
     private final FacultyService facultyService;
 
-
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_DEPARTMENT','ROLE_FACULTY','ROLE_STUDENT_AFFAIR')")
     @GetMapping
     public ResponseEntity<List<Faculty>> getAllFaculty(){
         return ResponseEntity.ok(facultyService.getFacultyAll());
     }
 
-
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_FACULTY')")
     @GetMapping("/{id}")
     public ResponseEntity<Faculty> getFacultyById(@PathVariable Long id){
         return ResponseEntity.ok(facultyService.getFaculty(id));
     }
-
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_DEPARTMENT','ROLE_FACULTY','ROLE_STUDENT_AFFAIR')")
     @GetMapping("/{id}/departments")
     public ResponseEntity<Collection<Department>> getFacultyByDepartments(@PathVariable Long id){
         return ResponseEntity.ok(facultyService.departments(id));
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_DEPARTMENT','ROLE_FACULTY')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_DEPARTMENT','ROLE_FACULTY','ROLE_STUDENT_AFFAIR')")
     @GetMapping("/{facultiesId}/departments/{departmentsId}")
     public ResponseEntity <Department>  getDepartmentForFaculty(@PathVariable Long facultiesId,@PathVariable Long departmentsId){
         return ResponseEntity.ok(facultyService.retireveDepartment(facultiesId,departmentsId));

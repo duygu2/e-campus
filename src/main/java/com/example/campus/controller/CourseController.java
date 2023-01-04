@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class CourseController {
     private final CourseService courseService;
 
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_STUDENT_AFFAIR','ROLE_STUDENT','ROLE_FACULTY')")
     @GetMapping("/courses")
     public ResponseEntity<?> getCourseAll(){
         return ResponseEntity.ok(courseService.getCourseAll());

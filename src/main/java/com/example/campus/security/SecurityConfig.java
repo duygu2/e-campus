@@ -34,8 +34,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       httpSecurity
               .csrf().disable()
               .authorizeRequests()
-              .antMatchers("/faculties/**").hasAnyRole(ADMIN.name(),FACULTY.name())
-
               .antMatchers( "/departments/**").hasAnyRole(ADMIN.name(), FACULTY.name(), DEPARTMENT.name())
               .antMatchers(HttpMethod.GET,"/departments/**").hasAnyAuthority(DEPARTMENT_READ.name(),FACULTY_READ.name())
               .antMatchers(HttpMethod.PUT,"/departments/**").hasAnyAuthority(DEPARTMENT_WRITE.name(),FACULTY_WRITE.name())
@@ -59,14 +57,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   @Bean
   protected UserDetailsService userDetailsService(){
-    UserDetails duyguUser = User.builder()
+    UserDetails student = User.builder()
             .username("duygu")
             .password(passwordEncoder.encode("123"))
            // .roles(STUDENT.name())//ROLE_STUDENT
             .authorities(STUDENT.getGrantedAuthorities())
             .build();
 
-    UserDetails nisaUser=  User.builder()
+    UserDetails admin=  User.builder()
               .username("nisa")
               .password(passwordEncoder.encode("123"))
               //.roles(ADMIN.name())
@@ -74,7 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
               .build();
 
     UserDetails teacher=  User.builder()
-            .username("abc")
+            .username("teacher")
             .password(passwordEncoder.encode("123"))
             //.roles(TEACHER.name())
             .authorities(TEACHER.getGrantedAuthorities())
@@ -86,12 +84,33 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .authorities(DEPARTMENT.getGrantedAuthorities())
             .build();
 
+    UserDetails faculty= User.builder()
+            .username("faculty")
+            .password(passwordEncoder.encode("123"))
+            .authorities(FACULTY.getGrantedAuthorities())
+            .build();
+
+    UserDetails HR = User.builder()
+            .username("HR")
+            .password(passwordEncoder.encode("123"))
+            .authorities(ApplicationUserRole.HR.getGrantedAuthorities())
+            .build();
+
+    UserDetails SA = User.builder()
+            .username("SA")
+            .password(passwordEncoder.encode("123"))
+            .authorities(STUDENT_AFFAIR.getGrantedAuthorities())
+            .build();
+
 
     return new InMemoryUserDetailsManager(
-            duyguUser,
-            nisaUser,
+            student,
+            admin,
             teacher,
-            department
+            department,
+            faculty,
+            HR,
+            SA
     );
   }
 }

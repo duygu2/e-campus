@@ -13,6 +13,7 @@ import static com.example.campus.security.ApplicationUserPermission.*;
 public enum ApplicationUserRole {
     STUDENT(Sets.newHashSet(STUDENT_READ,STUDENT_WRITE,COURSE_READ)),
     ADMIN(Sets.newHashSet(COURSE_READ, COURSE_WRITE,STUDENT_READ,STUDENT_WRITE)),
+    STUDENT_AFFAIR(Sets.newHashSet(STUDENT_WRITE)),
     HR(Sets.newHashSet(PERSONNEL_WRITE,PERSONNEL_READ)),
     INSTITUTE(Sets.newHashSet(INSTITUTE_WRITE,INSTITUTE_READ)),
     FACULTY(Sets.newHashSet(FACULTY_WRITE,FACULTY_READ)),

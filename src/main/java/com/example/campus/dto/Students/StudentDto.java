@@ -20,5 +20,5 @@ public class StudentDto {
     private String name;
     private Long schoolNumber;
     private StudentType studentType;
-    private Department department;
+   
 }

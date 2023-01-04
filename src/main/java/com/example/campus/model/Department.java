@@ -1,5 +1,6 @@
 package com.example.campus.model;
 
+import com.example.campus.dto.Students.StudentDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;

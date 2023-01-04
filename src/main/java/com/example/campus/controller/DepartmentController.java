@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,18 +37,20 @@ public class DepartmentController {
         return new ResponseEntity(departmentService.addDepartment(id,department), HttpStatus.CREATED);
     }
 
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_INSTITUTE')")
     @PostMapping("/institutes/{id}/departments")
     @ResponseBody
     public ResponseEntity<Department> addDepartmentByInstitute(@PathVariable Long id,@RequestBody Department department){
         return new ResponseEntity(departmentService.addDepartmentByInstitute(id,department), HttpStatus.CREATED);
     }
 
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_INSTITUTE')")
     @DeleteMapping("/departments/{id}")
     public ResponseEntity<Void> deleteDepartment(@PathVariable Long id){
         departmentService.deleteDepartment(id);
         return ResponseEntity.ok().build();
     }
-    //@GetMapping("faculties/{facultiesId}/departments/{departmentId}")
+
 
     @PutMapping("/departments/{id}")
     public ResponseEntity<Department> updateDepartment(@PathVariable Long id, @RequestBody Department department){

@@ -25,7 +25,7 @@ public class Faculty {
 
     private String name;
 
-    //@JsonIgnore
+    @JsonIgnore
     @OneToMany(mappedBy = "faculty")
     private Collection<Student> students;
 

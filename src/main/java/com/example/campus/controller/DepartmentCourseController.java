@@ -27,13 +27,13 @@ public class DepartmentCourseController {
         return new ResponseEntity(courseService.addCourse(departmentId,course), HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_DEPARTMENT','ROLE_FACULTY','ROLE_STUDENT')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_DEPARTMENT','ROLE_FACULTY','ROLE_STUDENT','ROLE_STUDENT_AFFAIR')")
     @GetMapping("/departments/{departmentId}/courses")
     public ResponseEntity <Collection<Course>> getCourses(@PathVariable Long departmentId){
         return ResponseEntity.ok(departmentService.allCourses(departmentId));
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_DEPARTMENT','ROLE_FACULTY','ROLE_STUDENT')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_DEPARTMENT','ROLE_FACULTY','ROLE_STUDENT','ROLE_STUDENT_AFFAIR')")
     @GetMapping("/departments/{departmentId}/courses/{courseId}")
     public ResponseEntity<Course> getCourseById(@PathVariable Long departmentId, @PathVariable Long courseId){
         return ResponseEntity.ok(departmentService.courses(departmentId,courseId));

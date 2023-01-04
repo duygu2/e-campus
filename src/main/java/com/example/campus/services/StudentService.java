@@ -23,7 +23,7 @@ public class StudentService {
     private final StudentDtoConverter studentDtoConverter;
     private final DepartmentService departmentService;
     private final DepartmentRepository departmentRepository;
-
+    private final PasswordEncoder passwordEncoder;
 
 
     public List<StudentDto> getAllStudents(){
@@ -42,7 +42,7 @@ public class StudentService {
         return accountOptional.map(studentDtoConverter::convert).orElse(new StudentDto());
     }
 
-    public StudentDto createStudent(StudentDto studentDto) {
+ /*   public StudentDto createStudent(StudentDto studentDto) {
         Student student = new Student();
         student.setId(studentDto.getId());
         student.setName(studentDto.getName());
@@ -52,7 +52,7 @@ public class StudentService {
         studentRepository.save(student);
 
         return studentDtoConverter.convert(student);
-    }
+    }*/
 
     //Only update student name***
 
@@ -72,16 +72,14 @@ public class StudentService {
         return (List<StudentDto>) studentRepository.findById(id).orElse(null);
     }
 
-    //öğrenci işleri yapacak ,admin yapacak
-
     public StudentDto addStudent(Long id, Student student){
         student.setDepartment(departmentRepository.findById(id).orElse(null));
 
+        //student.setPassword(passwordEncoder.encode(student.getPassword()));
         var savedStudent=studentRepository.save(student);
         return StudentDto.builder().name(savedStudent.getName())
                 .studentType(savedStudent.getStudentType())
                 .schoolNumber(savedStudent.getSchoolNumber())
-                .department(savedStudent.getDepartment())
                 .id(savedStudent.getId())
                 .build();
 
@@ -105,9 +103,6 @@ public class StudentService {
     }*/
 
 
-
-
-//maybe mistake
    }
 
 

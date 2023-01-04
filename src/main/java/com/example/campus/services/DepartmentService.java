@@ -1,5 +1,6 @@
 package com.example.campus.services;
 
+import com.example.campus.dto.Students.StudentDto;
 import com.example.campus.model.Course;
 import com.example.campus.model.Department;
 import com.example.campus.model.Student;

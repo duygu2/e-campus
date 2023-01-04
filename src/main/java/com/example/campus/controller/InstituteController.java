@@ -18,25 +18,25 @@ import java.util.List;
 public class InstituteController {
     private final InstituteService instituteService;
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_INSTITUTE','ROLE_STUDENT')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_INSTITUTE','ROLE_STUDENT','ROLE_STUDENT_AFFAIR')")
     @GetMapping
     public ResponseEntity<List<Institute>> getAllInstitute(){
         return ResponseEntity.ok(instituteService.getInstituteAll());
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_INSTITUTE','ROLE_STUDENT')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_INSTITUTE','ROLE_STUDENT','ROLE_STUDENT_AFFAIR')")
     @GetMapping("/{id}")
     public ResponseEntity<Institute> getInstituteById(@PathVariable Long id){
         return ResponseEntity.ok(instituteService.getInstitute(id));
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_INSTITUTE','ROLE_STUDENT','ROLE_DEPARTMENT')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_INSTITUTE','ROLE_STUDENT','ROLE_DEPARTMENT','ROLE_STUDENT_AFFAIR')")
     @GetMapping("/{id}/departments")
     public ResponseEntity<Collection<Department>> getInstituteByDepartments(@PathVariable Long id){
         return ResponseEntity.ok(instituteService.departments(id));
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_INSTITUTE','ROLE_STUDENT','ROLE_DEPARTMENT')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_INSTITUTE','ROLE_STUDENT','ROLE_DEPARTMENT','ROLE_STUDENT_AFFAIR')")
     @GetMapping("/{instituteId}/departments/{departmentsId}")
     public ResponseEntity <Department>  getDepartmentForInstitute(@PathVariable Long instituteId,@PathVariable Long departmentsId){
         return ResponseEntity.ok(instituteService.retireveDepartment(instituteId,departmentsId));
