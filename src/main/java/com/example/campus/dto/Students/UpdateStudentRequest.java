@@ -13,5 +13,5 @@ import lombok.NoArgsConstructor;
 public class UpdateStudentRequest {
 
     private String name;
-    //ders burada mı eklenecek
+
 }

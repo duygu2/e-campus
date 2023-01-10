@@ -22,6 +22,7 @@ public class FacultyController {
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_DEPARTMENT','ROLE_FACULTY','ROLE_STUDENT_AFFAIR')")
     @GetMapping
     public ResponseEntity<List<Faculty>> getAllFaculty(){
+
         return ResponseEntity.ok(facultyService.getFacultyAll());
     }
 
@@ -30,6 +31,7 @@ public class FacultyController {
     public ResponseEntity<Faculty> getFacultyById(@PathVariable Long id){
         return ResponseEntity.ok(facultyService.getFaculty(id));
     }
+
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_DEPARTMENT','ROLE_FACULTY','ROLE_STUDENT_AFFAIR')")
     @GetMapping("/{id}/departments")
     public ResponseEntity<Collection<Department>> getFacultyByDepartments(@PathVariable Long id){

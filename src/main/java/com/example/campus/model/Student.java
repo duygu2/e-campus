@@ -26,7 +26,7 @@ public class Student {
     private Long schoolNumber;
     private StudentType studentType;
     private String Role = "ROLE_STUDENT";
-    //add features
+
 
     @JsonIgnore
     @ManyToOne

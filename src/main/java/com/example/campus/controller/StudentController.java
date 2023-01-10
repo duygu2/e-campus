@@ -22,11 +22,11 @@ public class StudentController {
 
     @PreAuthorize("hasAnyAuthority('ROLE_STUDENT','ROLE_ADMIN','ROLE_DEPARTMENT','ROLE_FACULTY','ROLE_STUDENT_AFFAIR')")
     @GetMapping("/{id}")
-    public ResponseEntity<StudentDto> getAccountById(@PathVariable Long id) {
+    public ResponseEntity<StudentDto> getStudentById(@PathVariable Long id) {
         return ResponseEntity.ok(studentService.getStudentById(id));
     }
 
-    @PreAuthorize("hasAuthority('ROLE_ADMIN','ROLE_DEPARTMENT','ROLE_FACULTY')")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_DEPARTMENT','ROLE_FACULTY')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteStudent(@PathVariable Long id){
         studentService.deleteStudent(id);
